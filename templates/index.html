@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+<img
+	id="todo__loading-animation"
+	src="{{ url_for('static', filename='Onload.gif') }}"
+	alt="Loading animation..."
+/>
+<section class="todo" id="main">
+	<div class="todo__header">
+		<h1>todo list</h1>
+	</div>
+	<div class="todo__app">
+		<div class="todo__app-form">
+			<form action="{{ url_for('add_todo') }}" method="POST">
+				<input type="text" name='todo' class="input_form" autocomplete="off"/>
+				<button type="submit" class="btn-add" value='submit' />
+					<i class="fas fa-plus"></i>
+			</button>
+			</form>
+		</div>
+		<div class="todo__app-active">
+			{% for todo in todos %}
+			<div>
+			<p class='todo__app-text'>{{ todo }}</p><a class='delete-btn' href="{{ url_for('delete_todo', id=todo.id) }}">
+				<!-- <img src="./../static/bin.svg" alt="delete btn"> -->
+				<svg width="37" height="37" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.625 9.5V4.75H40.375V9.5H52.25V14.25H47.5V49.875C47.5 50.5049 47.2498 51.109 46.8044 51.5544C46.359 51.9998 45.7549 52.25 45.125 52.25H11.875C11.2451 52.25 10.641 51.9998 10.1956 51.5544C9.75022 51.109 9.5 50.5049 9.5 49.875V14.25H4.75V9.5H16.625ZM14.25 14.25V47.5H42.75V14.25H14.25ZM21.375 21.375H26.125V40.375H21.375V21.375ZM30.875 21.375H35.625V40.375H30.875V21.375Z" fill="#5C527F"/>
+					</svg>
+			</a>
+			
+			
+		</div>
+		{% endfor %}
+		</div>
+		<!-- <div class="todo__app-finished">
+			<p>here you will find list of finished tasks</p>
+		</div> -->
+	</div>
+	<div class="todo__footer">
+		<a href="https://www.instagram.com/thelegitprogrammer/" target="blank">
+			thelegitprogrammer
+		</a>
+		<span>x</span>
+		<a href="https://www.instagram.com/wecodeinpython/" target="blank">
+			wecodeinpython
+		</a>
+	</div>
+</section>
+{% endblock %}
